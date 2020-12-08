@@ -21,6 +21,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.blokada"
     android:sharedUserId="org.blokada">
 
@@ -123,6 +124,38 @@
                     android:scheme="blocka" />
             </intent-filter>
         </activity>
+
+        <!-- Tasker integrity -->
+        <activity
+            android:name="service.TaskerActivity"
+            android:configChanges="orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Blokada.Translucent"
+            android:windowSoftInputMode="adjustResize|stateAlwaysVisible" />
+        <activity-alias tools:ignore="ExtraText">
+            android:name="service.PluginActivity"
+            android:exported="true"
+            android:icon="@drawable/blokada_logo"
+            android:label="Blokada 5"
+            android:targetActivity="service.TaskerActivity"
+            tools:ignore="ExportedActivity">
+            <!-- this Intent filter allows the plug-in to be discovered by the host. -->
+            <intent-filter>
+                <action android:name="com.twofortyfouram.locale.intent.action.EDIT_SETTING"/>
+            </intent-filter>
+        </activity-alias>
+
+        <receiver
+            android:name="ui.CommandActivity"
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
+
+            <!-- this Intent filter allows the plug-in to be discovered by the host. -->
+            <intent-filter>
+                <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING"/>
+            </intent-filter>
+        </receiver>
 
         <receiver android:name="service.ExpirationReceiver" />
 

@@ -205,6 +205,9 @@ dependencies {
 
     // legacy (for import of v4 settings)
     implementation 'io.paperdb:paperdb:2.7.1'
+
+    // for Tasker integration
+    implementation 'com.twofortyfouram:android-plugin-client-sdk-for-locale:4.0.3'
 }
 
 apply plugin: 'org.mozilla.rust-android-gradle.rust-android'
